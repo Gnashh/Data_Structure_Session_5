@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class ListSpeedComparison {
@@ -56,5 +57,24 @@ public class ListSpeedComparison {
 
         System.out.println("ArrayList deletion time: " + arrayListRemoveTime + " nanoseconds");
         System.out.println("LinkedList deletion time: " + linkedListRemoveTime + " nanoseconds");
+
+        // Iteration time comparison
+        long arrayListIterationStartTime = System.nanoTime();
+        Iterator<Integer> arrayListIterator = arrayList.iterator();
+        while (arrayListIterator.hasNext()) {
+            arrayListIterator.next();
+        }
+        long arrayListIterationEndTime = System.nanoTime();
+        long arrayListIterationTime = arrayListIterationEndTime - arrayListIterationStartTime;
+        System.out.println("ArrayList iteration time: " + arrayListIterationTime + " nanoseconds");
+
+        long linkedListIterationStartTime = System.nanoTime();
+        Iterator<Integer> linkedListIterator = linkedList.iterator();
+        while (linkedListIterator.hasNext()) {
+            linkedListIterator.next();
+        }
+        long linkedListIterationEndTime = System.nanoTime();
+        long linkedListIterationTime = linkedListIterationEndTime - linkedListIterationStartTime;
+        System.out.println("LinkedList iteration time: " + linkedListIterationTime + " nanoseconds");
     }
 }
