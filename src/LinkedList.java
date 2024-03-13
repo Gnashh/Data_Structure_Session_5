@@ -57,6 +57,54 @@ public class LinkedList {
             }
         }
 
+        private Node<E> getNode(int index){
+            Node<E> node = head;
+            for (int i = 0; 1 < index && node != null; i++){
+                node = node.next;
+            }
+            return node;
+        }
+
+        public void add(int index, E item){
+            if (index <0 || index> size){
+                throw new IndexOutOfBoundsException(Integer.toString(index));
+            }
+
+            if (index==0){
+                addFirst(item);
+            }
+            else{
+                Node<E> node = getNode(index-1);
+                addAfter (node,item);
+            }
+        }
+
+        public boolean remove(E item){
+            boolean find = false;
+            if (size<= 1)removeFirst();
+            if (size>1){
+                while (head!= null){
+                    Node<E> next = head;
+                    if (item==next.data){
+                        find=true;
+                        removeAfter(next);
+                    }
+                    head=next.next;
+                }
+            }
+            return find;
+        }
+
+        public E set(int index, E newValue){
+            if (index < 0 || index >= size){
+                throw new IndexOutOfBoundsException(Integer.toString(index));
+            }
+            Node<E> node = getNode(index);
+            E result = node.data;
+            node.data = newValue;
+            return result;
+        }
+
         public static void main(String[] args) {
             Node<String> tom = new Node<>("Tom");
             Node<String> dick = new Node<>("Dick");
